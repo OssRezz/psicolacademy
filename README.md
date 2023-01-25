@@ -1,66 +1,184 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PsicolAcademy Prueba Tecnica
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Dependencias
 
-## About Laravel
+-   Xampp 8+
+-   Composer
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Instalacion
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Clonar repositorio
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2. Abrir el proyecto en la consola de preferencia
 
-## Learning Laravel
+3. Instalamos las dependencias, ejecutamos el siguiente comando: `composer install`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+4. Configuramos el archivo .env
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+5. Generamos una key: `php artisan key:generate`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+6. Ejecutamos las migraciones: `php artisan migrate:fresh --seed`
 
-## Laravel Sponsors
+7. Para ingresar al proyecto, escribimos en el navegador `localhost/psicolacademy/public`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<br>
 
-### Premium Partners
+# Descripcion
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Este proyecto es una aplicacion Monolitica y la vez contiene todos los endpoints para funcionar como API REST.
 
-## Contributing
+<br>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Aplicacion monolitca
 
-## Code of Conduct
+<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Tecnologias
 
-## Security Vulnerabilities
+-   Bootstrap 5
+-   Laravel 9
+-   Blade
+-   JavaScript
+-   CkEditor
+-   DataTable
+-   MySQL
+-   ChartJs
+-   DomPdf
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<br>
 
-## License
+## API
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<br>
+
+`Para usar utiilizar los endpoints es necesario que la que la peticion contenga un token Bearer Authentication. Cuando un usuario inicia sesion se le retorna un token.`
+
+<br>
+
+## Autentificacion:
+
+<br>
+
+-   La ruta para hacer login es: [localhost/psicolacademy/public/api/login](localhost/psicolacademy/public/api/login), metodo POST, requiere de dos parametros email y password. Retorna un mensaje de login exitoso y el token del usuario.
+
+<br>
+
+## Usuarios
+
+<br>
+
+1. Todas los usuarios:
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/usuarios](localhost/psicolacademy/public/api/usuarios)
+
+2. Ver un usuario, Recibe como parametro el id del usuario:
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/usuarios/3](localhost/psicolacademy/public/api/usuarios/3)
+
+3. Crear un usuario, recibe como parametros: name, email, password, rol_id [ 1, 2, 3].
+
+    Metodo POST, Ruta: [localhost/psicolacademy/public/api/usuarios](localhost/psicolacademy/public/api/usuarios)
+
+<br>
+
+## Estudiantes
+
+<br>
+
+1. Todos los estudiantes:
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/estudiantes](localhost/psicolacademy/public/api/estudiantes)
+
+2. Ver un estudiante, Recibe como parametro el id del estudiante
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/estudiantes/1](localhost/psicolacademy/public/api/estudiantes/1)
+
+3. Editar un estudiante, Recibe como parametro el id del estudiante
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/estudiantes/1/edit](localhost/psicolacademy/public/api/estudiantes/1/edit)
+
+4. Crear un estudiante, recibe como parametros: documento, nombres, apellidos, telefono, email, direccion, departamento, ciudad.
+
+    Metodo POST, Ruta: [localhost/psicolacademy/public/api/estudiantes](localhost/psicolacademy/public/api/estudiantes)
+
+5. Actualizar un estudiante, recibe como parametros: documento, nombres, apellidos, telefono, email, direccion, departamento, ciudad, estado y el id del estudiante en la url.
+
+    Metodo PUT, Ruta: [localhost/psicolacademy/public/api/estudiantes/1](localhost/psicolacademy/public/api/estudiantes/1)
+
+<br>
+
+## Profesores
+
+<br>
+
+1. Todos los profesores:
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/profesores](localhost/psicolacademy/public/api/profesores)
+
+2. Ver un profesor, Recibe como parametro el id del profesor
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/profesores/1](localhost/psicolacademy/public/api/profesores/1)
+
+3. Editar un profesor, Recibe como parametro el id del profesor
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/profesores/1/edit](localhost/psicolacademy/public/api/profesores/1/edit)
+
+4. Crear un profesor, recibe como parametros: documento, nombres, apellidos, telefono, email, direccion, departamento, ciudad.
+
+    Metodo POST, Ruta: [localhost/psicolacademy/public/api/profesores](localhost/psicolacademy/public/api/profesores)
+
+5. Actualizar un profesor, recibe como parametros: documento, nombres, apellidos, telefono, email, direccion, departamento, ciudad, estado y el id del profesor en la url.
+
+    Metodo PUT, Ruta: [localhost/psicolacademy/public/api/profesores/1](localhost/psicolacademy/public/api/profesores/1)
+
+<br>
+
+## Asignaturas
+
+<br>
+
+1. Todos las asignaturas:
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/asignaturas](localhost/psicolacademy/public/api/asignaturas)
+
+2. Ver una asignatura, Recibe como parametro el id de la asignatura
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/asignaturas/1](localhost/psicolacademy/public/api/asignaturas/1)
+
+3. Editar un asignatura, Recibe como parametro el id de la asignatura
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/asignaturas/1/edit](localhost/psicolacademy/public/api/asignaturas/1/edit)
+
+4. Crear una asignatura, recibe como parametros: nombre, area_id, descripcion, creditos, tipo_asignatura [ 1, 2].
+
+    Metodo POST, Ruta: [localhost/psicolacademy/public/api/asignaturas](localhost/psicolacademy/public/api/asignaturas)
+
+5. Actualizar una asignatura, recibe como parametros: nombre, area_id, descripcion, creditos, tipo_asignatura, estado y el id de la asignatura en la url.
+
+    Metodo PUT, Ruta: [localhost/psicolacademy/public/api/asignaturas/1](localhost/psicolacademy/public/api/asignaturas/1)
+
+<br>
+
+## Clases
+
+<br>
+
+1. Todas las clases activas:
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/clases](localhost/psicolacademy/public/api/clases)
+
+2. Ver una clase, Recibe como parametro el id de la clase
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/clases/1](localhost/psicolacademy/public/api/clases/1)
+
+3. Editar una clase, Recibe como parametro el id de la clase
+
+    Metodo GET, Ruta: [localhost/psicolacademy/public/api/clases/1/edit](localhost/psicolacademy/public/api/clases/1/edit)
+
+4. Crear una clase, recibe como parametros: profesor_id, asignatura_id, hora_inicio, hora_fin.
+
+    Metodo POST, Ruta: [localhost/psicolacademy/public/api/clases](localhost/psicolacademy/public/api/clases)
+
+5. Actualizar una clase, recibe como parametros: profesor_id, asignatura_id, hora_inicio, hora_fin, estado y el id de la clase en la url.
+
+    Metodo PUT, Ruta: [localhost/psicolacademy/public/api/clases/1](localhost/psicolacademy/public/api/clases/1)
