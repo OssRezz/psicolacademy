@@ -51,7 +51,7 @@ Este proyecto es una aplicacion Monolitica y la vez contiene todos los endpoints
 
 <br>
 
-`Para usar utiilizar los endpoints es necesario que la que la peticion contenga un token Bearer Authentication. Cuando un usuario inicia sesion se le retorna un token.`
+`Para utilizar los endpoints, es necesario incluir un token de autenticación Bearer en la solicitud. Al iniciar sesión, se proporciona un token al usuario..`
 
 <br>
 
@@ -59,7 +59,15 @@ Este proyecto es una aplicacion Monolitica y la vez contiene todos los endpoints
 
 <br>
 
--   La ruta para hacer login es: [localhost/psicolacademy/public/api/login](localhost/psicolacademy/public/api/login), metodo POST, requiere de dos parametros email y password. Retorna un mensaje de login exitoso y el token del usuario.
+-   Login:
+
+    Ruta: [localhost/psicolacademy/public/api/login](localhost/psicolacademy/public/api/login)
+
+    metodo POST
+
+    Parametros email y password.
+
+    Retorna un mensaje de login exitoso y el token del usuario.
 
 <br>
 
