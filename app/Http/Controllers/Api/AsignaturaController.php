@@ -22,7 +22,7 @@ class AsignaturaController extends Controller
         return response()->json([
             "status" => 200,
             "message" => "Todas las  asignaturas",
-            "data" => Asignatura::all()
+            "data" => Asignatura::with('area')->orderByDesc('id')->get()
         ]);
     }
 

@@ -20,7 +20,7 @@ class UsuarioController extends Controller
         return response()->json([
             "status" => 200,
             "message" => "Todos los usuarios",
-            "data" =>  User::all()
+            "data" =>  User::with('rol')->orderByDesc('id')->get()
         ]);
     }
 
@@ -42,7 +42,7 @@ class UsuarioController extends Controller
         }
         return response()->json([
             "status" => 200,
-            "message" => "Crear un usuario",
+            "message" => "Usuario registrado exitosamente",
             "data" =>  User::create($request->all())
         ]);
     }

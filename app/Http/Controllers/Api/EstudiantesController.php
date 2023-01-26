@@ -21,7 +21,7 @@ class EstudiantesController extends Controller
         return response()->json([
             "status" => 200,
             "message" => "Todos los estudiantes",
-            "data" => Estudiante::all()
+            "data" => Estudiante::orderByDesc('id')->get()
         ]);
     }
 
@@ -33,15 +33,16 @@ class EstudiantesController extends Controller
      */
     public function store(CreateEstudianteRequest $request)
     {
-        $request->request->add(['rol_id' => 3]);
-        $request->request->add(['name' => $request->nombres . ' ' . $request->apellidos]);
-        $request->request->add(['password' => $request->documento]);
+        $request->merge(["rol_id" => "3"]);
+        $request->merge(["name" => $request->nombres . ' ' . $request->apellidos]);
+        $request->merge(["password" => $request->documento]);
+
         $user = User::create($request->all());
         $estudiante = Estudiante::create($request->all());
         return response()->json([
             "status" => 200,
             "message" => "El Estudiante ha sido creado con exito",
-            "data" =>  [$estudiante, $user]
+            "data" => $estudiante
         ]);
     }
 

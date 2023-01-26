@@ -20,7 +20,7 @@ class MatriculaController extends Controller
         return response()->json([
             "status" => 200,
             "message" => "Todas las matriculas",
-            "data" => Matricula::all()
+            "data" => Matricula::with('estudiante')->orderByDesc('id')->get()
         ]);
     }
 

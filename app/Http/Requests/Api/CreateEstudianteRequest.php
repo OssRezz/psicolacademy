@@ -26,14 +26,14 @@ class CreateEstudianteRequest extends FormRequest
     public function rules()
     {
         return [
-            'documento' => ['required', 'string', 'max:255'],
-            'nombres' => ['required', 'string', 'max:255'],
-            'apellidos' => ['required', 'string', 'max:255'],
-            'telefono' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'direccion' => ['required', 'string', 'max:255'],
-            'departamento' => ['required', 'string', 'max:255'],
-            'ciudad' => ['required', 'string', 'max:255'],
+            'documento' => ['required', 'numeric'],
+            'nombres' => ['required', 'string'],
+            'apellidos' => ['required', 'string'],
+            'telefono' => ['required', 'numeric'],
+            'email' => ['required', 'string', 'email', 'unique:users'],
+            'direccion' => ['required', 'string'],
+            'departamento' => ['required', 'string'],
+            'ciudad' => ['required', 'string'],
         ];
     }
 

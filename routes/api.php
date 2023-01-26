@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ClasesController;
 use App\Http\Controllers\Api\EstudiantesController;
 use App\Http\Controllers\Api\MatriculaController;
 use App\Http\Controllers\Api\ProfesoresController;
+use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\SemestreController;
 use App\Http\Controllers\Api\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,9 @@ Route::post('login', [AuthController::class, 'login']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('logout', [AuthController::class, 'logout']);
+    Route::post('logout', [AuthController::class, 'logout']);
     Route::get('areas', [AreasController::class, 'index']);
+    Route::get('roles', [RolesController::class, 'index']);
     Route::post('semestre', [SemestreController::class, 'store']);
 
     Route::resource('estudiantes', EstudiantesController::class)->except('create');

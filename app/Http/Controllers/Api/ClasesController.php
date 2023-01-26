@@ -22,7 +22,7 @@ class ClasesController extends Controller
         return response()->json([
             "status" => 200,
             "message" => "Todas las clases",
-            "data" => Clase::all()
+            "data" => Clase::with('profesor', 'asignatura')->orderByDesc('id')->get()
         ]);
     }
 

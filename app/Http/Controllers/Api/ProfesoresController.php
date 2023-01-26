@@ -20,7 +20,7 @@ class ProfesoresController extends Controller
         return response()->json([
             "status" => 200,
             "message" => "Todos los profesores",
-            "data" => Profesor::all()
+            "data" => Profesor::orderByDesc('id')->get()
         ]);
     }
 
@@ -83,7 +83,7 @@ class ProfesoresController extends Controller
         $profesor->update($request->all());
         return response()->json([
             "status" => 200,
-            "message" => "Editar profesor",
+            "message" => "El profesor ha sido editado con exito",
             "data" =>  $profesor
         ]);
     }
