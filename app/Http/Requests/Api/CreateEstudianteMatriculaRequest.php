@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class CreateMatriculaRequest extends FormRequest
+class CreateEstudianteMatriculaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +26,12 @@ class CreateMatriculaRequest extends FormRequest
     public function rules()
     {
         return [
-            'estudiante_id' => ['required', 'numeric', 'max:255'],
-            'semestre' => ['required', 'numeric', 'max:20'],
-            'asignaturas' => 'required|array',
-            'matricula_id' => '',
-            'clase_id' => '',
+            'clase_id' => 'required|numeric',
+            'matricula_id' => 'required|numeric',
         ];
     }
 
     public function failedValidation(Validator $validator)
-
     {
         throw new HttpResponseException(response()->json([
             'status'   => 404,

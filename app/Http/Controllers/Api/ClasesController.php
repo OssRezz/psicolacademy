@@ -22,7 +22,7 @@ class ClasesController extends Controller
         return response()->json([
             "status" => 200,
             "message" => "Todas las clases",
-            "data" => Clase::with('profesor', 'asignatura')->orderByDesc('id')->get()
+            "data" => Clase::with('profesor', 'asignatura.area')->orderByDesc('id')->get()
         ]);
     }
 
@@ -48,10 +48,12 @@ class ClasesController extends Controller
                 "data" =>   $request->all()
             ]);
         }
+        $clase = Clase::create($request->all());
+        $clase = Clase::with('asignatura')->find($clase->id);
         return response()->json([
             "status" => 200,
             "message" => "Clase creada exitosamente",
-            "data" => Clase::create($request->all())
+            "data" => $clase
         ]);
     }
 
@@ -110,6 +112,8 @@ class ClasesController extends Controller
         }
 
         $clase->update($request->all());
+        $clase = Clase::with('asignatura')->find($clase->id);
+
         return response()->json([
             "status" => 200,
             "message" => "Clase actualizada exitosamente",

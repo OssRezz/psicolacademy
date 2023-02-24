@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CreateMatriculaRequest;
 use App\Http\Requests\Api\UpdateMatriculaRequest;
+use App\Http\Requests\Api\CreateEstudianteMatriculaRequest;
+use App\Models\ClaseMatricula;
+use App\Models\Estudiante;
 use App\Models\Matricula;
-use Illuminate\Http\Request;
 
 class MatriculaController extends Controller
 {
@@ -33,18 +35,41 @@ class MatriculaController extends Controller
      */
     public function store(CreateMatriculaRequest $request)
     {
-
-        if (!Matricula::find($request->estudiante_id)) {
+        if (!Estudiante::find($request->estudiante_id)) {
             return response()->json([
                 "status" => 204,
                 "message" => "El estudiante no esta registrado en el sistema",
                 "data" =>   $request->all()
             ]);
         }
+
+        $matricula = Matricula::where([['estudiante_id', $request->estudiante_id], ['estado', '=', 1]])->get();
+        if (count($matricula) != 0) {
+            return response()->json([
+                "status" => 204,
+                "message" => "El estudiante ya se encuentra en proceso academico",
+                "data" =>  []
+            ]);
+        }
+
+        $matricula = Matricula::create($request->all());
+        $matricula = Matricula::with('estudiante')->find($matricula->id);
+
+        //Ingresamos cada una de las asignaciones seleccionadas y las vamos a  referencias con el id de la matricula
+        foreach ($request->asignaturas as  $value) {
+            $request->merge(['matricula_id' =>  $matricula->id]);
+            $request->merge(['clase_id' => $value['id']]);
+            ClaseMatricula::create($request->all());
+        }
+
+        $matricula->creditos = $request->creditos;
+        $matricula->asignaturas = 1;
+        $matricula->update();
+
         return response()->json([
             "status" => 200,
-            "message" => "Matricula creada exitosamente",
-            "data" => Matricula::create($request->all())
+            "message" => "Matricula y asignaturas creadas exitosamente",
+            "data" => $matricula
         ]);
     }
 
@@ -88,6 +113,7 @@ class MatriculaController extends Controller
     public function update(UpdateMatriculaRequest $request, Matricula $matricula)
     {
         $matricula->update($request->all());
+        $matricula = Matricula::with('estudiante')->find($matricula->id);
         return response()->json([
             "status" => 200,
             "message" => "Matricula actualiza",
